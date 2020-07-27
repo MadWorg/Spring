@@ -14,15 +14,17 @@ namespace Spring
         GraphicsDeviceManager graphics;
         public static SpriteBatch SpriteBatch;
         public static ContentManager GameContent;
-        public static ScreenManager ScreenManager;
         public static bool ExitGame;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1600;
-            graphics.PreferredBackBufferHeight = 900;
+            graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferWidth = 1600,
+                PreferredBackBufferHeight = 900
+            };
             Content.RootDirectory = "Content";
+            Window.Title = "Archmage";
             GameContent = Content;
             IsMouseVisible = true;
             ExitGame = false;
@@ -38,7 +40,6 @@ namespace Spring
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            ScreenManager = new ScreenManager();
             base.Initialize();
         }
 
@@ -50,7 +51,7 @@ namespace Spring
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            ScreenManager.LoadContent();
+            ScreenManager.Instance.LoadContent();
 
             // TODO: use this.Content to load your game content here
         }
@@ -75,7 +76,7 @@ namespace Spring
                 Exit();
 
             // TODO: Add your update logic here
-            ScreenManager.Update(gameTime);
+            ScreenManager.Instance.Update(gameTime);
 
             if(ExitGame)
             {
@@ -95,7 +96,7 @@ namespace Spring
 
             SpriteBatch.Begin();
 
-            ScreenManager.Draw(gameTime);
+            ScreenManager.Instance.Draw(gameTime);
 
             SpriteBatch.End();
 

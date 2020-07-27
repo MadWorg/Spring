@@ -34,7 +34,13 @@ namespace Spring.ui
 
         public Vector2 Position { get; set; }
 
-        public Rectangle Rectangle { get; set; }
+        public Rectangle Rectangle
+        {
+            get
+            {
+                return new Rectangle((int)Position.X - _texture.Width/2, (int)Position.Y - _texture.Height/2, _texture.Width, _texture.Height);
+            }
+        }
 
         public string Text { get; set; }
 
@@ -43,12 +49,11 @@ namespace Spring.ui
 
         #region Methods
 
-        public Button(string label, Texture2D texture, SpriteFont font, Vector2 pos)
+        public Button(string label, Texture2D texture, SpriteFont font)
         {
             Label = label;
             _texture = texture;
             _font = font;
-            Rectangle = new Rectangle((int)pos.X - _texture.Width/2, (int)pos.Y - _texture.Height/2, _texture.Width, _texture.Height);
         }
 
         public override void Draw(GameTime gameTime)

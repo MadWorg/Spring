@@ -9,7 +9,7 @@ using Spring.ui;
 
 namespace Spring.screens
 {
-    class MainMenu : Screen
+    class MainMenu : GameScreen
     {
 
         private Texture2D _background;
@@ -25,16 +25,18 @@ namespace Spring.screens
         {
             _background = Game1.GameContent.Load<Texture2D>("background/mainMenu");
 
-            var playButton = new Button("Play", Game1.GameContent.Load<Texture2D>("interface/button"), Game1.GameContent.Load<SpriteFont>("fonts/baseFont"), new Vector2(800, 300))
+            var playButton = new Button("Play", Game1.GameContent.Load<Texture2D>("interface/button"), Game1.GameContent.Load<SpriteFont>("fonts/baseFont"))
             {
                 Text = "Play",
+                Position = new Vector2(800, 300)
             };
 
             playButton.Click += PlayButton_Click;
 
-            var exitButton = new Button("Exit", Game1.GameContent.Load<Texture2D>("interface/button"), Game1.GameContent.Load<SpriteFont>("fonts/baseFont"), new Vector2(800, 550))
+            var exitButton = new Button("Exit", Game1.GameContent.Load<Texture2D>("interface/button"), Game1.GameContent.Load<SpriteFont>("fonts/baseFont"))
             {
                 Text = "Exit",
+                Position = new Vector2(800, 550)
             };
 
             exitButton.Click += ExitButton_Click;
@@ -75,7 +77,8 @@ namespace Spring.screens
         private void PlayButton_Click(object sender, System.EventArgs e)
         {
             Console.WriteLine("switching to game");
-            //Game1.ScreenManager.SwitchScreen("GameScreen");
+            ScreenManager.Instance.SwitchScreen("ActionScreen");
+            // if saveFile exists, load player from there
         }
 
         private void ExitButton_Click(object sender, System.EventArgs e)

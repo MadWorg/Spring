@@ -8,20 +8,34 @@ using System.Threading.Tasks;
 
 namespace Spring.screens
 {
-    public class ScreenManager 
+    public sealed class ScreenManager 
     {
 
         #region Fields
 
-        private Screen _currentScreen, _newScreen;
+        private GameScreen _currentScreen, _newScreen;
 
-        private Dictionary<string, Screen> _screens = new Dictionary<string, Screen>();
+        private Dictionary<string, GameScreen> _screens = new Dictionary<string, GameScreen>();
 
         private Boolean _inTransition = false;
 
         #endregion
 
         #region Methods
+
+        private static ScreenManager _instance;
+
+        public static ScreenManager Instance
+        {
+            get
+            {
+                if(_instance == null)
+                {
+                    _instance = new ScreenManager();
+                }
+                return _instance;
+            }
+        }
 
         public ScreenManager()
         {
@@ -61,7 +75,7 @@ namespace Spring.screens
                 // try to create instance of new screen
                 if (!_screens.ContainsKey(nextScreen))
                 {
-                    _newScreen = (Screen)Activator.CreateInstance(Type.GetType("Spring.screens." + nextScreen));
+                    _newScreen = (GameScreen)Activator.CreateInstance(Type.GetType("Spring.screens." + nextScreen));
                     _screens.Add(nextScreen, _newScreen);
                 }
                 else

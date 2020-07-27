@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Spring.screens
 {
-    class TitleScreen : Screen
+    class TitleScreen : GameScreen
     {
 
         #region Fields
@@ -37,7 +37,7 @@ namespace Spring.screens
             if(mouseState.LeftButton == ButtonState.Pressed)
             {
                 Console.WriteLine("Swapping");
-                Game1.ScreenManager.SwitchScreen("MainMenu");
+                ScreenManager.Instance.SwitchScreen("MainMenu");
             }
 
         }
