@@ -9,12 +9,20 @@ using Spring.ui;
 
 namespace Spring.screens
 {
-    class MainMenu : GameScreen
+    class MainMenu : CustomScreen
     {
+
+        #region Fields
 
         private Texture2D _background;
 
         private List<Component> _buttons;
+
+        public string Label = "MainMenu";
+
+        #endregion
+
+        #region Methods
 
         public MainMenu()
         {
@@ -47,7 +55,7 @@ namespace Spring.screens
 
         public override void Unload()
         {
-            Console.WriteLine("No unloading yet");
+            // nothing to unload yet
         }
 
         public override void Update(GameTime gameTime)
@@ -74,6 +82,8 @@ namespace Spring.screens
             }
         }
 
+        //onClick methods for buttons
+
         private void PlayButton_Click(object sender, System.EventArgs e)
         {
             Console.WriteLine("switching to game");
@@ -85,5 +95,7 @@ namespace Spring.screens
         {
             Game1.ExitGame = true;
         }
+
+        #endregion
     }
 }

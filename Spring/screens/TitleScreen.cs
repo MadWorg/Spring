@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Spring.screens
 {
-    class TitleScreen : GameScreen
+    class TitleScreen : CustomScreen
     {
 
         #region Fields
@@ -18,11 +18,16 @@ namespace Spring.screens
         private Texture2D _texture;
 
         #endregion
+
+        #region Methods
+
         public TitleScreen() { }
 
         public override void LoadContent()
         {
             _texture = Game1.GameContent.Load<Texture2D>("background/titleScreen");
+
+            Loaded = true;
         }
 
         public override void Unload()
@@ -46,6 +51,8 @@ namespace Spring.screens
         {
             Game1.SpriteBatch.Draw(_texture, new Vector2(0, 0), Color.White);
         }
+
+        #endregion
 
     }
 }

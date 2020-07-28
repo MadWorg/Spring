@@ -49,6 +49,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="screens\ActionScreen.cs" />
+    <Compile Include="screens\CustomScreen.cs" />
     <Compile Include="screens\MainMenu.cs" />
     <Compile Include="screens\GameScreen.cs" />
     <Compile Include="screens\ScreenManager.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="ui\Button.cs" />
     <Compile Include="ui\CombatInterface.cs" />
     <Compile Include="ui\ResourceBar.cs" />
+    <Compile Include="ui\Spellslot.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

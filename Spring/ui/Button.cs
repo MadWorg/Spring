@@ -64,7 +64,7 @@ namespace Spring.ui
 
             if (_hovering)
             {
-                color = Color.Blue;
+                color = Color.Gold;
             }
 
             

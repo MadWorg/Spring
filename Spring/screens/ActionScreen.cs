@@ -9,7 +9,7 @@ using Spring.ui;
 
 namespace Spring.screens
 {
-    public class ActionScreen : GameScreen
+    public class ActionScreen : CustomScreen
     {
 
         Player player;
@@ -28,14 +28,22 @@ namespace Spring.screens
         public override void LoadContent()
         {
 
+            // ugly temporary fix for loading same content twice
+            // remove asap and check for loading otherwise, possibly in ScreenManager
+
+            if (Loaded) return;  // loading issue
+
             cInterface.LoadContent();
 
             // dont make player and room here, temp fix(?)
             
             room = new Room();
             player = new Player(255, 6);
-
+            player.LoadContent();
             room.LoadContent();
+
+            Loaded = true; // loading issue
+
         }
 
         public override void Unload()
@@ -51,6 +59,7 @@ namespace Spring.screens
         public override void Draw(GameTime gameTime)
         {
             room.Draw(gameTime);
+            player.Draw(gameTime);
             cInterface.Draw(gameTime);
         }
 

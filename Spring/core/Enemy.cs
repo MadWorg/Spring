@@ -61,7 +61,7 @@ namespace Spring.core
             }
         }
 
-        private Texture2D _texture;
+        private Texture2D _sprite;
 
         public string TextureName { get; set; }
 
@@ -69,17 +69,18 @@ namespace Spring.core
         {
             Health = MaxHealth = 100;
             Mana = MaxMana = 3;
-            TextureName = "testEnemy";
+            TextureName = "darkOrc";
         }
 
         public void LoadContent()
         {
-            _texture = Game1.GameContent.Load<Texture2D>("entity/" + TextureName);
+            //_sprite = Game1.GameContent.Load<Texture2D>("entity/" + TextureName);
+            _sprite = Game1.GameContent.Load<Texture2D>("interface/whiteSquare");
         }
 
         public void Draw(GameTime gameTime)
         {
-            Game1.SpriteBatch.Draw(_texture, new Rectangle(1200, 50, 350, 700), Color.White);
+            Game1.SpriteBatch.Draw(_sprite, new Rectangle(1020, 120, 350, 630), Color.Magenta);
         }
 
         public void UpdateUI(string label, string barType)
