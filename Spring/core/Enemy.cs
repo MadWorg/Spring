@@ -9,15 +9,10 @@ using System.Threading.Tasks;
 
 namespace Spring.core
 {
-    public class Enemy
+    public class Enemy : Entity
     {
 
-        private int _hp;
-        private int _maxHp;
-        private int _mana;
-        private int _maxMana;
-
-        public int Health
+        public new int Health
         {
             get { return _hp; }
 
@@ -28,7 +23,7 @@ namespace Spring.core
             }
         }
 
-        public int MaxHealth
+        public new int MaxHealth
         {
             get { return _maxHp; }
 
@@ -39,7 +34,7 @@ namespace Spring.core
             }
         }
 
-        public int Mana
+        public new int Mana
         {
             get { return _mana; }
 
@@ -50,7 +45,7 @@ namespace Spring.core
             }
         }
 
-        public int MaxMana
+        public new int MaxMana
         {
             get { return _maxMana; }
 
@@ -67,25 +62,36 @@ namespace Spring.core
 
         public Enemy()
         {
-            Health = MaxHealth = 100;
-            Mana = MaxMana = 3;
+            Health = MaxHealth = 200;
+            Mana = MaxMana = 7;
             TextureName = "darkOrc";
+            Spells = new Spellbook();
         }
 
         public void LoadContent()
         {
             //_sprite = Game1.GameContent.Load<Texture2D>("entity/" + TextureName);
-            _sprite = Game1.GameContent.Load<Texture2D>("interface/whiteSquare");
+
+            //_sprite = Game1.GameContent.Load<Texture2D>("interface/whiteSquare");
+
+            _sprite = Game1.GameContent.Load<Texture2D>("entity/skelly");
+
         }
 
         public void Draw(GameTime gameTime)
         {
-            Game1.SpriteBatch.Draw(_sprite, new Rectangle(1020, 120, 350, 630), Color.Magenta);
+            Game1.SpriteBatch.Draw(_sprite, new Rectangle(1020, 120, 350, 630), Color.White);
         }
 
         public void UpdateUI(string label, string barType)
         {
-            if(barType == "hp")
+
+            if (Game1.GameState != Game1.State.Playing)
+            {
+                return;
+            }
+
+            if (barType == "hp")
             {
                 CombatInterface.UpdateBar(label, _maxHp, _hp);
             }

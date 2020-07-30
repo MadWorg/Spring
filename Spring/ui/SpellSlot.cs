@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Spring.core;
 
 namespace Spring.ui
 {
@@ -15,6 +16,8 @@ namespace Spring.ui
         #region Fields
 
         public string Label;
+
+        public int Index;
 
         private Texture2D _icon;
 
@@ -34,6 +37,10 @@ namespace Spring.ui
 
         public Color Tint { get; set; }
 
+        public int SpellIndex { get; set; }
+
+        public Spell Spell { get; set; } // edit this to load spell icon
+
         //public Spell Spell { get; set; }    // uncomment when spells are done
 
         public Rectangle Rectangle
@@ -48,9 +55,18 @@ namespace Spring.ui
 
         #region Methods
 
-        public Spellslot(string label)
+        public Spellslot(int index)
+        {
+            Index = index;
+            Tint = Color.White;
+            _icon = Game1.GameContent.Load<Texture2D>("spells/spell_blank");
+            _border = Game1.GameContent.Load<Texture2D>("spells/spell_border");
+        }
+
+        public Spellslot(string label, int index)
         {
             Label = label;
+            Index = index;
             Tint = Color.White;
             _icon = Game1.GameContent.Load<Texture2D>("spells/spell_blank");
             _border = Game1.GameContent.Load<Texture2D>("spells/spell_border");
@@ -69,8 +85,18 @@ namespace Spring.ui
                 Tint = Color.Blue;
             }
 
-            Game1.SpriteBatch.Draw(_icon, Rectangle, Tint);
-            Game1.SpriteBatch.Draw(_border, Rectangle, Color.White);
+            if(Spell == null)
+            {
+                Game1.SpriteBatch.Draw(_icon, Rectangle, Tint);
+                Game1.SpriteBatch.Draw(_border, Rectangle, Color.White);
+            }
+            else
+            {
+                Game1.SpriteBatch.Draw(Spell.Icon, Rectangle, Color.White);
+                Game1.SpriteBatch.Draw(_border, Rectangle, Color.White);
+            }
+
+            
 
         }
 
@@ -86,9 +112,10 @@ namespace Spring.ui
             if(mouseRectanlge.Intersects(Rectangle))
             {
                 _hovering = true;
-
+                // replace with calling a spell cast method
                 if(_currentState.LeftButton == ButtonState.Released && _previousState.LeftButton == ButtonState.Pressed)
                 {
+                    // cast spell
                     Click?.Invoke(this, new EventArgs());
                 }
 

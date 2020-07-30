@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Spring.core;
 using Spring.screens;
 
 namespace Spring
@@ -12,9 +13,25 @@ namespace Spring
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
+
         public static SpriteBatch SpriteBatch;
+
         public static ContentManager GameContent;
+
         public static bool ExitGame;
+
+        public static Player Player;
+
+        public static bool DebugMode;
+
+        public static State GameState;
+
+        public enum State
+        {
+            Menu,
+            Paused,
+            Playing
+        }
 
         public Game1()
         {
@@ -28,6 +45,7 @@ namespace Spring
             GameContent = Content;
             IsMouseVisible = true;
             ExitGame = false;
+            DebugMode = false;
 
         }
 
@@ -40,6 +58,7 @@ namespace Spring
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            GameState = State.Menu;
             base.Initialize();
         }
 
@@ -50,6 +69,14 @@ namespace Spring
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
+
+            if("savefile" == "exists") // for later
+            {
+                //System.Console.WriteLine("load");
+                // make player from savefile
+            }
+
+            Player = new Player();
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             ScreenManager.Instance.LoadContent();
 
@@ -62,7 +89,7 @@ namespace Spring
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // Unloading is handled by ScreenManager
         }
 
         /// <summary>

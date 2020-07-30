@@ -13,9 +13,9 @@ namespace Spring.screens
 
         #region Fields
 
-        private CustomScreen _currentScreen, _newScreen;
+        private GameScreen _currentScreen, _newScreen;
 
-        private Dictionary<string, CustomScreen> _screens = new Dictionary<string, CustomScreen>();
+        private Dictionary<string, GameScreen> _screens = new Dictionary<string, GameScreen>();
 
         private Boolean _inTransition = false;
 
@@ -42,6 +42,7 @@ namespace Spring.screens
             //SwitchScreen("TitleScreen");
             _currentScreen = new TitleScreen();
             _screens.Add("TitleScreen", _currentScreen);
+            _screens.Add("GameOverScreen", new TitleScreen("gameOver"));
         }
 
         public void LoadContent()
@@ -76,7 +77,7 @@ namespace Spring.screens
                 // try to create instance of new screen
                 if (!_screens.ContainsKey(nextScreen))
                 {
-                    _newScreen = (CustomScreen)Activator.CreateInstance(Type.GetType("Spring.screens." + nextScreen));
+                    _newScreen = (GameScreen)Activator.CreateInstance(Type.GetType("Spring.screens." + nextScreen));
                     _screens.Add(nextScreen, _newScreen);
                 }
                 else

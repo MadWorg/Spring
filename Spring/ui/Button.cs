@@ -56,6 +56,8 @@ namespace Spring.ui
             _font = font;
         }
 
+        // add another constructor that can resize the button
+
         public override void Draw(GameTime gameTime)
         {
             var color = Color.White;

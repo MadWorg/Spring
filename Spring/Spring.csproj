@@ -43,13 +43,15 @@
   <ItemGroup>
     <Compile Include="Component.cs" />
     <Compile Include="core\Enemy.cs" />
+    <Compile Include="core\Entity.cs" />
     <Compile Include="core\Player.cs" />
     <Compile Include="core\Room.cs" />
+    <Compile Include="core\Spell.cs" />
+    <Compile Include="core\Spellbook.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="screens\ActionScreen.cs" />
-    <Compile Include="screens\CustomScreen.cs" />
     <Compile Include="screens\MainMenu.cs" />
     <Compile Include="screens\GameScreen.cs" />
     <Compile Include="screens\ScreenManager.cs" />
@@ -68,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <Content Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

@@ -9,7 +9,7 @@ using Spring.ui;
 
 namespace Spring.screens
 {
-    class MainMenu : CustomScreen
+    class MainMenu : GameScreen
     {
 
         #region Fields
@@ -26,12 +26,14 @@ namespace Spring.screens
 
         public MainMenu()
         {
-            _buttons = new List<Component>();
+            
         }    
 
         public override void LoadContent()
         {
             _background = Game1.GameContent.Load<Texture2D>("background/mainMenu");
+
+            _buttons = new List<Component>();
 
             var playButton = new Button("Play", Game1.GameContent.Load<Texture2D>("interface/button"), Game1.GameContent.Load<SpriteFont>("fonts/baseFont"))
             {
@@ -51,11 +53,17 @@ namespace Spring.screens
 
             _buttons.Add(playButton);
             _buttons.Add(exitButton);
+             
+            // swap gameState to menu
+
+            Game1.GameState = Game1.State.Menu;
+
         }
 
         public override void Unload()
         {
-            // nothing to unload yet
+            _buttons = null;
+            Game1.GameContent.Unload();
         }
 
         public override void Update(GameTime gameTime)

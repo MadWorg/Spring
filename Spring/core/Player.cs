@@ -9,22 +9,13 @@ using System.Threading.Tasks;
 
 namespace Spring.core
 {
-    public class Player
+    public class Player : Entity
     {
-
-        private int _hp;
-
-        private int _maxHp;
-
-        private int _mana;
-
-        private int _maxMana;
-
         private Texture2D _sprite;
 
         #region Properties
 
-        public int Health
+        public new int Health
         {
             get { return _hp; }
 
@@ -35,7 +26,7 @@ namespace Spring.core
             }
         }
 
-        public int MaxHealth
+        public new int MaxHealth
         {
             get { return _maxHp; }
 
@@ -46,7 +37,7 @@ namespace Spring.core
             }
         }
 
-        public int Mana
+        public new int Mana
         {
             get { return _mana; }
 
@@ -57,7 +48,7 @@ namespace Spring.core
             }
         }
 
-        public int MaxMana
+        public new int MaxMana
         {
             get { return _maxMana; }
 
@@ -72,24 +63,39 @@ namespace Spring.core
 
         #region Methods
 
+        public Player()
+        {
+            Health = MaxHealth = 25;
+            Mana = MaxMana = 3;
+            Spells = new Spellbook();
+        }
+
         public Player(int hp, int mana)
         {
             Health = MaxHealth = hp;
             Mana = MaxMana = mana;
+            Spells = new Spellbook();
         }
 
         public void LoadContent()
         {
-            _sprite = Game1.GameContent.Load<Texture2D>("interface/whiteSquare");
+            //_sprite = Game1.GameContent.Load<Texture2D>("interface/whiteSquare");
+            _sprite = Game1.GameContent.Load<Texture2D>("entity/player");
         }
 
         public void Draw(GameTime gameTime)
         {
-            Game1.SpriteBatch.Draw(_sprite, new Rectangle(230, 120, 350, 630), Color.Magenta);
+            Game1.SpriteBatch.Draw(_sprite, new Rectangle(230, 120, 350, 630), Color.White);
         }
 
         public void UpdateUI(string label, string barType)
         {
+
+            if(Game1.GameState != Game1.State.Playing)
+            {
+                return;
+            }
+
             if(barType == "hp")
             {
                 CombatInterface.UpdateBar(label, _maxHp, _hp);

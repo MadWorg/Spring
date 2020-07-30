@@ -10,12 +10,16 @@ using System.Threading.Tasks;
 
 namespace Spring.screens
 {
-    class TitleScreen : CustomScreen
+    class TitleScreen : GameScreen
     {
 
         #region Fields
 
         private Texture2D _texture;
+
+        private string _textureName = "titleScreen";
+
+        private MouseState _previousState, _currentState;
 
         #endregion
 
@@ -23,23 +27,29 @@ namespace Spring.screens
 
         public TitleScreen() { }
 
+        public TitleScreen(string background)
+        {
+            _textureName = background;
+        }
+
         public override void LoadContent()
         {
-            _texture = Game1.GameContent.Load<Texture2D>("background/titleScreen");
+            _texture = Game1.GameContent.Load<Texture2D>("background/" + _textureName);
 
-            Loaded = true;
+            Game1.GameState = Game1.State.Menu;
         }
 
         public override void Unload()
         {
-            // nothing to do here yet
+            Game1.GameContent.Unload();
         }
 
         public override void Update(GameTime gameTime)
         {
-            MouseState mouseState = Mouse.GetState();
+            _previousState = _currentState;
+            _currentState = Mouse.GetState();
 
-            if(mouseState.LeftButton == ButtonState.Pressed)
+            if (_currentState.LeftButton == ButtonState.Released && _previousState.LeftButton == ButtonState.Pressed)
             {
                 Console.WriteLine("Swapping");
                 ScreenManager.Instance.SwitchScreen("MainMenu");
