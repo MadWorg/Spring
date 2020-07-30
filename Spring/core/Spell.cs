@@ -22,6 +22,15 @@ namespace Spring.core
 
         public int Index { get; set; }
 
+        public Effect EffectType { get; internal set; }
+
+        public enum Effect
+        {
+            Damage,
+            Heal,
+            Shield
+        }
+
         public Spell()
         {
             Value = 5;  // spells that deal damage will have negative numbers or maybe not
@@ -29,8 +38,18 @@ namespace Spring.core
             Description = "This is a test spell";
             Name = "TestSpell";
             Icon = Game1.GameContent.Load<Texture2D>("spells/spell_test");
-            Index = 0;
         }
+
+        public Spell(int value, int cost, string desc, string name, string texture, Effect effect)
+        {
+            Value = value;
+            Cost = cost;
+            Description = desc;
+            Name = name;
+            Icon = Game1.GameContent.Load<Texture2D>("spells/" + texture);
+            EffectType = effect;
+        }
+
 
         public Spell(string spell_icon)
         {
@@ -39,7 +58,6 @@ namespace Spring.core
             Description = "This is a test spell";
             Name = "TestSpell";
             Icon = Game1.GameContent.Load<Texture2D>("spells/" + spell_icon);
-            Index = 0;
         }
 
     }

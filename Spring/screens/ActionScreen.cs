@@ -38,10 +38,14 @@ namespace Spring.screens
             Game1.Player.LoadContent();
 
             Game1.Player.Spells.AddSpell(new Spell());
-            Game1.Player.Spells.AddSpell(new Spell("fireball_icon"));
-            Game1.Player.Spells.AddSpell(new Spell("liferose_icon"));
-            Game1.Player.Spells.AddSpell(new Spell("shield_icon"));
-
+            Game1.Player.Spells.AddSpell(new Spell(15, 2, "The pizza margerita of spells", "Fireball", "fireball_icon", Spell.Effect.Damage));
+            Game1.Player.Spells.AddSpell(new Spell(10, 1, "Restore your health", "Liferose", "liferose_icon", Spell.Effect.Heal));
+            Game1.Player.Spells.AddSpell(new Spell(20, 2, "Protect yourself", "Shield", "shield_icon", Spell.Effect.Shield));
+            /*
+            Game1.Player.Spells.AddSpell(Spelllist.Fireball);
+            Game1.Player.Spells.AddSpell(Spelllist.Liferose);
+            Game1.Player.Spells.AddSpell(Spelllist.Shield);
+            */
             room.LoadContent();
 
 
@@ -82,7 +86,7 @@ namespace Spring.screens
                 room.Enemy.Mana -= 1;
             }
 
-            if(Game1.Player.Health < 10)
+            if(Game1.Player.Health == 10)
             {
                 Game1.Player.Spells.RemoveSpell(0);
                 Game1.Player.Spells.RemoveSpell(2);

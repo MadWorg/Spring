@@ -82,7 +82,7 @@ namespace Spring.ui
 
             if(_hovering)
             {
-                Tint = Color.Blue;
+                Tint = Color.LightSkyBlue;
             }
 
             if(Spell == null)
@@ -92,13 +92,21 @@ namespace Spring.ui
             }
             else
             {
-                Game1.SpriteBatch.Draw(Spell.Icon, Rectangle, Color.White);
+
+                if(Spell.Cost > Game1.Player.Mana)
+                {
+                    Tint = Color.Red;
+                }
+
+                Game1.SpriteBatch.Draw(Spell.Icon, Rectangle, Tint);
                 Game1.SpriteBatch.Draw(_border, Rectangle, Color.White);
             }
 
             
 
         }
+
+        private void CastSpell() { }
 
         public override void Update(GameTime gameTime)
         {
