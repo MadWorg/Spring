@@ -110,6 +110,7 @@ namespace Spring.ui
 
         public override void Update(GameTime gameTime)
         {
+
             _previousState = _currentState;
             _currentState = Mouse.GetState();
 

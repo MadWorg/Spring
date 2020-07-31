@@ -19,18 +19,62 @@ namespace Spring.core
 
         protected int _maxMana;
 
-        public Spellbook Spells;
+        public Spellbook SpellList;
 
 
         // Properties
 
-        public int Health { get; set; }
+        public int Health
+        {
+            get
+            {
+                return _hp;
+            }
 
-        public int MaxHealth { get; set; }
+            set
+            {
+                _hp = value;
+            }
+        }
 
-        public int Mana { get; set; }
+        public int MaxHealth
+        {
+            get
+            {
+                return _maxHp;
+            }
 
-        public int MaxMana { get; set; }
+            set
+            {
+                _maxHp = value;
+            }
+        }
+
+        public int Mana
+        {
+            get
+            {
+                return _mana;
+            }
+
+            set
+            {
+                _mana = value;
+            }
+        }
+
+        public int MaxMana
+        {
+            get
+            {
+                return _maxMana;
+            }
+
+            set
+            {
+                _maxMana = value;
+            }
+        }
 
     }
 }

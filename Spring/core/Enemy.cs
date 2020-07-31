@@ -12,50 +12,6 @@ namespace Spring.core
     public class Enemy : Entity
     {
 
-        public new int Health
-        {
-            get { return _hp; }
-
-            set
-            {
-                _hp = value;
-                UpdateUI("enemyHealth", "hp");
-            }
-        }
-
-        public new int MaxHealth
-        {
-            get { return _maxHp; }
-
-            set
-            {
-                _maxHp = value;
-                UpdateUI("enemyHealth", "hp");
-            }
-        }
-
-        public new int Mana
-        {
-            get { return _mana; }
-
-            set
-            {
-                _mana = value;
-                UpdateUI("enemyMana", "mana");
-            }
-        }
-
-        public new int MaxMana
-        {
-            get { return _maxMana; }
-
-            set
-            {
-                _maxMana = value;
-                UpdateUI("enemyMana", "mana");
-            }
-        }
-
         private Texture2D _sprite;
 
         public string TextureName { get; set; }
@@ -64,8 +20,8 @@ namespace Spring.core
         {
             Health = MaxHealth = 200;
             Mana = MaxMana = 7;
-            TextureName = "darkOrc";
-            Spells = new Spellbook();
+            TextureName = "skelly";
+            SpellList = new Spellbook();
         }
 
         public void LoadContent()
@@ -74,7 +30,7 @@ namespace Spring.core
 
             //_sprite = Game1.GameContent.Load<Texture2D>("interface/whiteSquare");
 
-            _sprite = Game1.GameContent.Load<Texture2D>("entity/skelly");
+            _sprite = Game1.GameContent.Load<Texture2D>("entity/" + TextureName);
 
         }
 
@@ -83,22 +39,14 @@ namespace Spring.core
             Game1.SpriteBatch.Draw(_sprite, new Rectangle(1020, 120, 350, 630), Color.White);
         }
 
-        public void UpdateUI(string label, string barType)
+        public void Update(GameTime gameTime)
         {
 
-            if (Game1.GameState != Game1.State.Playing)
-            {
-                return;
-            }
+            CombatInterface.UpdateBar("enemyHealth", _maxHp, _hp);
 
-            if (barType == "hp")
-            {
-                CombatInterface.UpdateBar(label, _maxHp, _hp);
-            }
-            else if(barType == "mana")
-            {
-                CombatInterface.UpdateBar(label, _maxMana, _mana);
-            }
+            CombatInterface.UpdateBar("enemyMana", _maxMana, _mana);
+
         }
+
     }
 }

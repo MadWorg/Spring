@@ -10,6 +10,14 @@ namespace Spring.core
 
         private static Spell[] _spells;
 
+        public Spell[] GetSpells
+        {
+            get
+            {
+                return _spells;
+            }
+        }
+
         public Spellbook()
         {
 
@@ -18,8 +26,21 @@ namespace Spring.core
 
         }
 
+        public Spellbook(Spell[] spells, int count)
+        {
+            _spellCount = count;
+            _spells = spells;
+
+        }
+
         private void UpdateUI()
         {
+
+            if (Game1.GameState != Game1.State.Playing)
+            {
+                return;
+            }
+
             CombatInterface.UpdateSpell(_spells);
         }
 

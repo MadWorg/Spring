@@ -5,38 +5,52 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Spring.core;
+using Spring.screens;
 
 namespace Spring.gameLogic
 {
-    public static class SpellHandler
+    public class SpellHandler
     {
-        
-        // finish this
-        // testing a push
 
-        public static void CastSpell(Spell spell, Entity target)
+        // finish this
+
+        private ActionScreen _parent;
+
+        public SpellHandler(ActionScreen parentScreen)
+        {
+            _parent = parentScreen;
+        }
+
+        public void CastSpell(Spell spell, Entity caster)
         {
             if(spell.EffectType == Spell.Effect.Damage)
             {
-
-                target.Health -= spell.Value;
+                if(caster is Player)
+                {
+                    _parent.Enemy.Health -= spell.Value;
+                }
+                else
+                {
+                    Game1.Player.Health -= spell.Value;
+                }
+                
 
             }
             else if(spell.EffectType == Spell.Effect.Heal)
             {
 
-                var newHp = target.Health + spell.Value;
+                var newHp = caster.Health + spell.Value;
 
-                if ( newHp >= target.MaxHealth)
+                if ( newHp >= caster.MaxHealth)
                 {
 
-                    target.Health = target.MaxHealth;
+                    caster.Health = caster.MaxHealth;
 
                 }
                 else
                 {
 
-                    target.Health = newHp;
+                    caster.Health = newHp;
 
                 }
 

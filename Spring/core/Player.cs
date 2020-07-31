@@ -15,50 +15,6 @@ namespace Spring.core
 
         #region Properties
 
-        public new int Health
-        {
-            get { return _hp; }
-
-            set
-            {
-                _hp = value;
-                UpdateUI("playerHealth", "hp");
-            }
-        }
-
-        public new int MaxHealth
-        {
-            get { return _maxHp; }
-
-            set
-            {
-                _maxHp = value;
-                UpdateUI("playerHealth", "hp");
-            }
-        }
-
-        public new int Mana
-        {
-            get { return _mana; }
-
-            set
-            {
-                _mana = value;
-                UpdateUI("playerMana", "mana");
-            }
-        }
-
-        public new int MaxMana
-        {
-            get { return _maxMana; }
-
-            set
-            {
-                _maxMana = value;
-                UpdateUI("playerMana", "mana");
-            }
-        }
-
         #endregion
 
         #region Methods
@@ -67,14 +23,7 @@ namespace Spring.core
         {
             Health = MaxHealth = 25;
             Mana = MaxMana = 3;
-            Spells = new Spellbook();
-        }
-
-        public Player(int hp, int mana)
-        {
-            Health = MaxHealth = hp;
-            Mana = MaxMana = mana;
-            Spells = new Spellbook();
+            SpellList = new Spellbook();
         }
 
         public void LoadContent()
@@ -88,24 +37,13 @@ namespace Spring.core
             Game1.SpriteBatch.Draw(_sprite, new Rectangle(230, 120, 350, 630), Color.White);
         }
 
-        public void UpdateUI(string label, string barType)
+        public void Update(GameTime gameTime)
         {
 
-            if(Game1.GameState != Game1.State.Playing)
-            {
-                return;
-            }
+            CombatInterface.UpdateBar("playerHealth", _maxHp, _hp);
 
-            if(barType == "hp")
-            {
-                CombatInterface.UpdateBar(label, _maxHp, _hp);
-            }
-            else if(barType == "mana")
-            {
-                CombatInterface.UpdateBar(label, _maxMana, _mana);
-            }
+            CombatInterface.UpdateBar("playerMana", _maxMana, _mana);
 
-            // might add xp bar
         }
 
         #endregion

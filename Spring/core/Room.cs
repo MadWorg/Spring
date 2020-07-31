@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Spring.core
 {
-    class Room
+    public class Room
     {
 
         private Texture2D _background;

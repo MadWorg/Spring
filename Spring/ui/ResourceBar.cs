@@ -51,7 +51,7 @@ namespace Spring.ui
 
         #region Methods
 
-        public ResourceBar(Texture2D frame, Texture2D bar, SpriteFont font)
+        public ResourceBar(Texture2D frame, Texture2D bar, SpriteFont font, int max, int cur)
         {
             _frame = frame;
             _bar = bar;
@@ -59,6 +59,8 @@ namespace Spring.ui
             TextColor = Color.White;
             Scale = 1.0f;
             BarColor = Color.Magenta; // a bar should no remain this color
+            MaxValue = max;
+            CurValue = cur;
         }
 
         public override void Draw(GameTime gameTime)
@@ -82,10 +84,10 @@ namespace Spring.ui
             Text = $"{CurValue}/{MaxValue}";
         }
 
-        public void UpdateValues(int maxValue, int curValue)
+        public void UpdateValue(int max, int cur)
         {
-            MaxValue = maxValue;
-            CurValue = curValue;
+            MaxValue = max;
+            CurValue = cur;
         }
 
         #endregion

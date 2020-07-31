@@ -19,6 +19,8 @@ namespace Spring.ui
 
         private SpriteFont _font;
 
+        private Enemy _enemy;
+
         //testing variables
 
         public static Dictionary<string, Component> _elements;
@@ -45,19 +47,12 @@ namespace Spring.ui
 
         #region Methods
 
-        public CombatInterface()
+        public CombatInterface(Enemy enemy)
         {
 
             // get rid of this code !!!
-           
-            PlayerMaxHealth = Game1.Player.MaxHealth;
-            PlayerCurHealth = Game1.Player.Health;
+            _enemy = enemy;
 
-            PlayerMaxMana = Game1.Player.MaxMana;
-            PlayerCurMana = Game1.Player.Mana;
-
-            EnemyMaxHealth = EnemyCurHealth = 100;
-            EnemyMaxMana = EnemyCurMana = 3;
         }
 
         public void LoadContent()
@@ -72,48 +67,40 @@ namespace Spring.ui
 
             var playerHealth = new ResourceBar(Game1.GameContent.Load<Texture2D>("interface/uiBar"),
                                            Game1.GameContent.Load<Texture2D>("interface/whiteSquare"),
-                                           _font)
+                                           _font, Game1.Player.MaxHealth, Game1.Player.Health)
             {
                 Label = "playerHealth",
                 BarColor = Color.Red,
                 Position = new Vector2(0, 0),
-                MaxValue = PlayerMaxHealth,
-                CurValue = PlayerCurHealth
             };
 
             var playerMana = new ResourceBar(Game1.GameContent.Load<Texture2D>("interface/uiBar"),
                                            Game1.GameContent.Load<Texture2D>("interface/whiteSquare"),
-                                           _font)
+                                           _font, Game1.Player.MaxHealth, Game1.Player.Health)
             {
                 Label = "playerMana",
                 BarColor = Color.Blue,
                 Position = new Vector2(0, 55),
                 Scale = 0.5f,
-                MaxValue = PlayerMaxMana,
-                CurValue = PlayerCurMana
             };
 
             var enemyHealth = new ResourceBar(Game1.GameContent.Load<Texture2D>("interface/uiBar"),
                                            Game1.GameContent.Load<Texture2D>("interface/whiteSquare"),
-                                           _font)
+                                           _font, _enemy.MaxHealth, _enemy.Health)
             {
                 Label = "enemyHealth",
                 BarColor = Color.Red,
                 Position = new Vector2(1100, 0),
-                MaxValue = EnemyMaxHealth,
-                CurValue = EnemyCurHealth
             };
 
             var enemyMana = new ResourceBar(Game1.GameContent.Load<Texture2D>("interface/uiBar"),
                                            Game1.GameContent.Load<Texture2D>("interface/whiteSquare"),
-                                           _font)
+                                           _font, _enemy.MaxMana, _enemy.Mana)
             {
                 Label = "enemyMana",
                 BarColor = Color.Blue,
                 Position = new Vector2(1350, 55),
                 Scale = 0.5f,
-                MaxValue = EnemyMaxMana,
-                CurValue = EnemyCurMana
             };
 
             _elements.Add(playerHealth.Label, playerHealth);
@@ -128,28 +115,34 @@ namespace Spring.ui
 
             // spell buttons
 
+            var initSpells = Game1.Player.SpellList.GetSpells;
+
             var SpellOne = new Spellslot("SpellOne", 0)
             {
                 Position = new Vector2(200, 774),
-                SpellIndex = 0
+                SpellIndex = 0,
+                Spell = initSpells[0]
             };
 
             var SpellTwo = new Spellslot("SpellTwo", 1)
             {
                 Position = new Vector2(350, 774),
-                SpellIndex = 1
+                SpellIndex = 1,
+                Spell = initSpells[1]
             };
 
             var SpellThree = new Spellslot("SpellThree", 2)
             {
                 Position = new Vector2(500, 774),
-                SpellIndex = 2
+                SpellIndex = 2,
+                Spell = initSpells[2]
             };
 
             var SpellFour = new Spellslot("SpellFour", 3)
             {
                 Position = new Vector2(650, 774),
-                SpellIndex = 3
+                SpellIndex = 3,
+                Spell = initSpells[3]
             };
 
             _spells[0] = SpellOne;
@@ -205,27 +198,28 @@ namespace Spring.ui
                 slot.Update(gameTime);
             }
 
+            Game1.Player.Update(gameTime);
+            _enemy.Update(gameTime);
+
         }
 
         //updates life and mana bars
 
         public static void UpdateBar(string barLabel, int maxValue, int curValue)
         {
-            foreach(KeyValuePair<string, Component> entry in _elements)
-            {
-                Console.WriteLine(entry.Key);
-            }
-
+         
             var bar = (ResourceBar) _elements[barLabel];
-            bar.UpdateValues(maxValue, curValue);
+            bar.UpdateValue(maxValue, curValue);
+            _elements[barLabel] = bar;
+
         }
 
-        public static void UpdateSpell(Spell[] newSpells)
+        public static void UpdateSpell(Spell[] spells)
         {
 
-            for(int i = 0; i < newSpells.Length; i++)
+            for(int i = 0; i < spells.Length; i++)
             {
-                _spells[i].Spell = newSpells[i]; // finish this, clean up code
+                _spells[i].Spell = spells[i]; // finish this, clean up code
             }
             
         }
