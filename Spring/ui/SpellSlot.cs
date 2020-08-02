@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Spring.core;
+using Spring.screens;
 
 namespace Spring.ui
 {
@@ -40,6 +41,8 @@ namespace Spring.ui
         public int SpellIndex { get; set; }
 
         public Spell Spell { get; set; } // edit this to load spell icon
+
+        public ActionScreen Parent { get; set; }
 
         //public Spell Spell { get; set; }    // uncomment when spells are done
 
@@ -106,8 +109,6 @@ namespace Spring.ui
 
         }
 
-        private void CastSpell() { }
-
         public override void Update(GameTime gameTime)
         {
 
@@ -121,11 +122,10 @@ namespace Spring.ui
             if(mouseRectanlge.Intersects(Rectangle))
             {
                 _hovering = true;
-                // replace with calling a spell cast method
+
                 if(_currentState.LeftButton == ButtonState.Released && _previousState.LeftButton == ButtonState.Pressed)
                 {
-                    // cast spell
-                    Click?.Invoke(this, new EventArgs());
+                    Parent.SpellHandler.CastSpell(Spell, Game1.Player);
                 }
 
             }

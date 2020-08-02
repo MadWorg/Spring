@@ -1,3 +1,1 @@
-﻿Add an input manager
-Add a sound manager
-Add spell casting
+﻿Add turn-based gameplay, add enemy attack

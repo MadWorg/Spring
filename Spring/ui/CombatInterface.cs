@@ -21,6 +21,8 @@ namespace Spring.ui
 
         private Enemy _enemy;
 
+        private ActionScreen _parent;
+
         //testing variables
 
         public static Dictionary<string, Component> _elements;
@@ -47,11 +49,12 @@ namespace Spring.ui
 
         #region Methods
 
-        public CombatInterface(Enemy enemy)
+        public CombatInterface(Enemy enemy, ActionScreen parent)
         {
 
             // get rid of this code !!!
             _enemy = enemy;
+            _parent = parent;
 
         }
 
@@ -121,28 +124,32 @@ namespace Spring.ui
             {
                 Position = new Vector2(200, 774),
                 SpellIndex = 0,
-                Spell = initSpells[0]
+                Spell = initSpells[0],
+                Parent = _parent
             };
 
             var SpellTwo = new Spellslot("SpellTwo", 1)
             {
                 Position = new Vector2(350, 774),
                 SpellIndex = 1,
-                Spell = initSpells[1]
+                Spell = initSpells[1],
+                Parent = _parent
             };
 
             var SpellThree = new Spellslot("SpellThree", 2)
             {
                 Position = new Vector2(500, 774),
                 SpellIndex = 2,
-                Spell = initSpells[2]
+                Spell = initSpells[2],
+                Parent = _parent
             };
 
             var SpellFour = new Spellslot("SpellFour", 3)
             {
                 Position = new Vector2(650, 774),
                 SpellIndex = 3,
-                Spell = initSpells[3]
+                Spell = initSpells[3],
+                Parent = _parent
             };
 
             _spells[0] = SpellOne;

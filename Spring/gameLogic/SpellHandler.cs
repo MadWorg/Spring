@@ -23,6 +23,12 @@ namespace Spring.gameLogic
 
         public void CastSpell(Spell spell, Entity caster)
         {
+
+            if (caster.Mana < spell.Cost)
+            {
+                return;
+            }
+
             if(spell.EffectType == Spell.Effect.Damage)
             {
                 if(caster is Player)
@@ -43,15 +49,11 @@ namespace Spring.gameLogic
 
                 if ( newHp >= caster.MaxHealth)
                 {
-
                     caster.Health = caster.MaxHealth;
-
                 }
                 else
                 {
-
                     caster.Health = newHp;
-
                 }
 
             }
@@ -59,6 +61,9 @@ namespace Spring.gameLogic
             {
                 return;
             }
+
+            caster.Mana -= spell.Cost;
+
         }
 
     }

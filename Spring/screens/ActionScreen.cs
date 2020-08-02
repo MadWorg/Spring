@@ -53,7 +53,7 @@ namespace Spring.screens
             
             _room.LoadContent();
 
-            ActionInterface = new CombatInterface(Enemy);
+            ActionInterface = new CombatInterface(Enemy, this);
             ActionInterface.LoadContent();
 
             // switch game state
@@ -90,6 +90,7 @@ namespace Spring.screens
             _previousState = _currentState;
             _currentState = Mouse.GetState();
 
+            /*
             #region Testing area 
             if (_currentState.LeftButton == ButtonState.Released && _previousState.LeftButton == ButtonState.Pressed)
             {
@@ -116,6 +117,7 @@ namespace Spring.screens
                 
             }
             #endregion
+            */
 
         }
 
