@@ -16,8 +16,6 @@ namespace Spring.screens
 
         private Room _room;
 
-        private bool _test = false;
-
         public Enemy Enemy
         {
             get
@@ -89,35 +87,6 @@ namespace Spring.screens
 
             _previousState = _currentState;
             _currentState = Mouse.GetState();
-
-            /*
-            #region Testing area 
-            if (_currentState.LeftButton == ButtonState.Released && _previousState.LeftButton == ButtonState.Pressed)
-            {
-                Game1.Player.Health -= 5;
-                Game1.Player.Mana -= 1;
-
-                _room.Enemy.Health -= 5;
-                _room.Enemy.Mana -= 1;
-            }
-
-            if(Game1.Player.Health == 10)
-            {
-                Game1.Player.SpellList.RemoveSpell(0);
-                Game1.Player.SpellList.RemoveSpell(2);
-            }
-
-            if(Game1.Player.Health == 5)
-            {
-                if(!_test)
-                {
-                    Game1.Player.SpellList.AddSpell(new Spell());
-                    _test = true;
-                }
-                
-            }
-            #endregion
-            */
 
         }
 
