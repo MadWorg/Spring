@@ -38,6 +38,7 @@ namespace Spring.core
             Description = "This is a test spell";
             Name = "TestSpell";
             Icon = Game1.GameContent.Load<Texture2D>("spells/spell_test");
+            EffectType = Effect.Damage;
         }
 
         public Spell(int value, int cost, string desc, string name, string texture, Effect effect)

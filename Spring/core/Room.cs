@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Spring.screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace Spring.core
         public string TextureName { get; set; }
 
         public Enemy Enemy { get; set; }
+
+        private ActionScreen Parent { get; set; }
 
         public Room(string texture, Enemy enemy)
         {

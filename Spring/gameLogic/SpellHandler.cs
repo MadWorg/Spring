@@ -12,13 +12,13 @@ namespace Spring.gameLogic
     public class SpellHandler
     {
 
-        // finish this
+        // potentially make this class static?
 
         private ActionScreen _parent;
 
-        public SpellHandler(ActionScreen parentScreen)
+        public SpellHandler(ActionScreen parent)
         {
-            _parent = parentScreen;
+            _parent = parent;
         }
 
         public void CastSpell(Spell spell, Entity caster)

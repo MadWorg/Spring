@@ -1,1 +1,1 @@
-﻿Add turn-based gameplay, add enemy attack
+﻿Turn-based partially implemented, add player and enemy mana resetting after swapping turns

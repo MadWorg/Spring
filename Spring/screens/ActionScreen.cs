@@ -16,6 +16,22 @@ namespace Spring.screens
 
         private Room _room;
 
+        private static bool _playerTurn = true;
+
+        public static bool PlayerTurn
+        {
+            get
+            {
+                return _playerTurn;
+            }
+
+            set
+            {
+                _playerTurn = value;
+            }
+
+        }
+
         public Enemy Enemy
         {
             get
@@ -29,8 +45,6 @@ namespace Spring.screens
 
         public SpellHandler SpellHandler;
 
-        private MouseState _previousState, _currentState;
-
         public ActionScreen()
         {
             SpellHandler = new SpellHandler(this);
@@ -39,7 +53,7 @@ namespace Spring.screens
         public override void LoadContent()
         {
 
-            // dont make player and room here, temp fix(?)
+            // make rooms separately, add Floor class to hold rooms
 
             _room = new Room();
             Game1.Player.LoadContent();
@@ -77,16 +91,10 @@ namespace Spring.screens
 
             Game1.Player.Update(gameTime);
 
+            Enemy.Update(gameTime);
 
             ActionInterface.Update(gameTime);
 
-
-
-
-            // replace code below 
-
-            _previousState = _currentState;
-            _currentState = Mouse.GetState();
 
         }
 
@@ -97,6 +105,10 @@ namespace Spring.screens
             ActionInterface.Draw(gameTime);
         }
 
+        public static void EndPlayerTurn()
+        {
+
+        }
 
     }
 }

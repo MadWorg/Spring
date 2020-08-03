@@ -32,8 +32,6 @@ namespace Spring.ui
 
         #region Properties
 
-        public event EventHandler Click;
-
         public Vector2 Position { get; set; }
 
         public Color Tint { get; set; }

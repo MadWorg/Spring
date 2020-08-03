@@ -21,6 +21,8 @@ namespace Spring.ui
 
         private Enemy _enemy;
 
+        private bool PlayerTurn = true;
+
         private ActionScreen _parent;
 
         //testing variables
@@ -52,7 +54,7 @@ namespace Spring.ui
         public CombatInterface(Enemy enemy, ActionScreen parent)
         {
 
-            // get rid of this code !!!
+            // get rid of this code ?
             _enemy = enemy;
             _parent = parent;
 
@@ -165,9 +167,17 @@ namespace Spring.ui
                 Position = new Vector2(1380, 810)
             };
 
+            var PassButton = new Button("Pass", Game1.GameContent.Load<Texture2D>("interface/exit2"), _font)
+            {
+                Position = new Vector2(1280, 810)
+            };
+
             ExitButton.Click += ExitButton_Click;
 
+            PassButton.Click += PassButton_Click;
+
             _elements.Add(ExitButton.Label, ExitButton);
+            _elements.Add(PassButton.Label, PassButton);
 
             #endregion
 
@@ -200,13 +210,21 @@ namespace Spring.ui
                 entry.Value.Update(gameTime);
             }
 
-            foreach (Spellslot slot in _spells)
+
+            if(ActionScreen.PlayerTurn)
             {
-                slot.Update(gameTime);
+                foreach (Spellslot slot in _spells)
+                {
+                    slot.Update(gameTime);
+                }
+            }
+            else
+            {
+                // make enemy do things
+                Console.WriteLine("Add player and enemy Mana resetting");
+                ActionScreen.PlayerTurn = true;
             }
 
-            Game1.Player.Update(gameTime);
-            _enemy.Update(gameTime);
 
         }
 
@@ -231,11 +249,16 @@ namespace Spring.ui
             
         }
 
-        // method for exit button
+        // OnClick Methods
 
         private void ExitButton_Click(object sender, System.EventArgs e)
         {
             ScreenManager.Instance.SwitchScreen("MainMenu");
+        }
+
+        private void PassButton_Click(object sender, System.EventArgs e)
+        {
+            ActionScreen.PlayerTurn = false;
         }
 
         #endregion

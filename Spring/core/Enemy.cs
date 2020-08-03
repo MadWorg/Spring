@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Spring.screens;
 using Spring.ui;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Spring.core
 
         private Texture2D _sprite;
 
+        private ActionScreen _parent = null;
+
         public string TextureName { get; set; }
 
         public Enemy()
@@ -22,6 +25,15 @@ namespace Spring.core
             Mana = MaxMana = 7;
             TextureName = "skelly";
             SpellList = new Spellbook();
+        }
+
+        public Enemy(ActionScreen parent)
+        {
+            Health = MaxHealth = 200;
+            Mana = MaxMana = 7;
+            TextureName = "skelly";
+            SpellList = new Spellbook();
+            _parent = parent;
         }
 
         public void LoadContent()
@@ -46,6 +58,14 @@ namespace Spring.core
 
             CombatInterface.UpdateBar("enemyMana", _maxMana, _mana);
 
+
+
+        }
+
+        private void UseTurn(GameTime gameTime)
+        {
+            var testSpell = new Spell();
+            _parent.SpellHandler.CastSpell(testSpell, this);
         }
 
     }
