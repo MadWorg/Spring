@@ -218,12 +218,6 @@ namespace Spring.ui
                     slot.Update(gameTime);
                 }
             }
-            else
-            {
-                // make enemy do things
-                Console.WriteLine("Add player and enemy Mana resetting");
-                ActionScreen.PlayerTurn = true;
-            }
 
 
         }

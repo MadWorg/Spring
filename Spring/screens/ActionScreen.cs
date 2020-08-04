@@ -13,8 +13,9 @@ namespace Spring.screens
 {
     public class ActionScreen : GameScreen
     {
+        private Room[] _floor;
 
-        private Room _room;
+        private int roomIndex = 0;
 
         private static bool _playerTurn = true;
 
@@ -36,7 +37,7 @@ namespace Spring.screens
         {
             get
             {
-                return _room.Enemy;
+                return _floor[roomIndex].Enemy;
             }
         }
 
@@ -48,6 +49,7 @@ namespace Spring.screens
         public ActionScreen()
         {
             SpellHandler = new SpellHandler(this);
+            _floor = GenerateFloor(3);
         }
 
         public override void LoadContent()
@@ -55,15 +57,15 @@ namespace Spring.screens
 
             // make rooms separately, add Floor class to hold rooms
 
-            _room = new Room();
+            
             Game1.Player.LoadContent();
 
             Game1.Player.SpellList.AddSpell(new Spell());
             Game1.Player.SpellList.AddSpell(new Spell(15, 2, "The pizza margerita of spells", "Fireball", "fireball_icon", Spell.Effect.Damage));
             Game1.Player.SpellList.AddSpell(new Spell(10, 1, "Restore your health", "Liferose", "liferose_icon", Spell.Effect.Heal));
             Game1.Player.SpellList.AddSpell(new Spell(20, 2, "Protect yourself", "Shield", "shield_icon", Spell.Effect.Shield));
-            
-            _room.LoadContent();
+
+            _floor[roomIndex].LoadContent();
 
             ActionInterface = new CombatInterface(Enemy, this);
             ActionInterface.LoadContent();
@@ -100,15 +102,24 @@ namespace Spring.screens
 
         public override void Draw(GameTime gameTime)
         {
-            _room.Draw(gameTime);
+            _floor[roomIndex].Draw(gameTime);
+
             Game1.Player.Draw(gameTime);
+
             ActionInterface.Draw(gameTime);
         }
 
-        public static void EndPlayerTurn()
+        private Room[] GenerateFloor(int roomCount)
         {
+            var floor = new Room[roomCount];
 
+            for(int i = 0; i < roomCount; i++)
+            {
+                //add random room generation, possibly make the room generate itself randomly?
+                floor[i] = new Room(this);
+            }
+
+            return floor;
         }
-
     }
 }

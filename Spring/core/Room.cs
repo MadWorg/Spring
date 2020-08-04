@@ -20,16 +20,16 @@ namespace Spring.core
 
         private ActionScreen Parent { get; set; }
 
-        public Room(string texture, Enemy enemy)
+        public Room(string texture, Enemy enemy, ActionScreen parent)
         {
             TextureName = texture;
             Enemy = enemy;
         }
 
-        public Room()
+        public Room(ActionScreen parent)
         {
             TextureName = "testRoom";
-            Enemy = new Enemy();
+            Enemy = new Enemy(parent);
         }
 
         public void LoadContent()

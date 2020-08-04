@@ -15,7 +15,7 @@ namespace Spring.core
 
         private Texture2D _sprite;
 
-        private ActionScreen _parent = null;
+        public ActionScreen Parent = null;
 
         public string TextureName { get; set; }
 
@@ -30,10 +30,10 @@ namespace Spring.core
         public Enemy(ActionScreen parent)
         {
             Health = MaxHealth = 200;
-            Mana = MaxMana = 7;
+            Mana = MaxMana = 3;
             TextureName = "skelly";
             SpellList = new Spellbook();
-            _parent = parent;
+            Parent = parent;
         }
 
         public void LoadContent()
@@ -58,14 +58,24 @@ namespace Spring.core
 
             CombatInterface.UpdateBar("enemyMana", _maxMana, _mana);
 
+            if(!ActionScreen.PlayerTurn)
+            {
+                UseTurn(gameTime);
+            }
+
 
 
         }
 
         private void UseTurn(GameTime gameTime)
         {
-            var testSpell = new Spell();
-            _parent.SpellHandler.CastSpell(testSpell, this);
+            Mana = MaxMana; // resets properly, too fast to notice by eye
+
+            Parent.SpellHandler.CastSpell(new Spell(), this);
+
+            ActionScreen.PlayerTurn = true;
+
+            Game1.Player.Mana = Game1.Player.MaxMana;
         }
 
     }
