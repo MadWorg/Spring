@@ -21,8 +21,6 @@ namespace Spring.ui
 
         private Enemy _enemy;
 
-        private bool PlayerTurn = true;
-
         private ActionScreen _parent;
 
         //testing variables
@@ -120,13 +118,14 @@ namespace Spring.ui
 
             // spell buttons
 
-            var initSpells = Game1.Player.SpellList.GetSpells;
+            var test = Game1.Player;
+
+            var initSpells = Game1.Player.SpellList.GetSpells();
 
             var SpellOne = new Spellslot("SpellOne", 0)
             {
                 Position = new Vector2(200, 774),
                 SpellIndex = 0,
-                Spell = initSpells[0],
                 Parent = _parent
             };
 
@@ -134,7 +133,6 @@ namespace Spring.ui
             {
                 Position = new Vector2(350, 774),
                 SpellIndex = 1,
-                Spell = initSpells[1],
                 Parent = _parent
             };
 
@@ -142,7 +140,6 @@ namespace Spring.ui
             {
                 Position = new Vector2(500, 774),
                 SpellIndex = 2,
-                Spell = initSpells[2],
                 Parent = _parent
             };
 
@@ -150,7 +147,6 @@ namespace Spring.ui
             {
                 Position = new Vector2(650, 774),
                 SpellIndex = 3,
-                Spell = initSpells[3],
                 Parent = _parent
             };
 
@@ -172,11 +168,15 @@ namespace Spring.ui
                 Position = new Vector2(1280, 810)
             };
 
+
+            // add OnClick methods to buttons
+
             ExitButton.Click += ExitButton_Click;
 
             PassButton.Click += PassButton_Click;
 
             _elements.Add(ExitButton.Label, ExitButton);
+
             _elements.Add(PassButton.Label, PassButton);
 
             #endregion
@@ -195,7 +195,7 @@ namespace Spring.ui
                 entry.Value.Draw(gameTime);
             }
 
-            foreach (Spellslot slot in _spells)
+            foreach(Spellslot slot in _spells)
             {
                 slot.Draw(gameTime);
             }
@@ -231,16 +231,6 @@ namespace Spring.ui
             bar.UpdateValue(maxValue, curValue);
             _elements[barLabel] = bar;
 
-        }
-
-        public static void UpdateSpell(Spell[] spells)
-        {
-
-            for(int i = 0; i < spells.Length; i++)
-            {
-                _spells[i].Spell = spells[i]; // finish this, clean up code
-            }
-            
         }
 
         // OnClick Methods

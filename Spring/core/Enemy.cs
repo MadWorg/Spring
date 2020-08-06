@@ -21,15 +21,15 @@ namespace Spring.core
 
         public Enemy()
         {
-            Health = MaxHealth = 200;
-            Mana = MaxMana = 7;
+            Health = MaxHealth = 50;
+            Mana = MaxMana = 3;
             TextureName = "skelly";
             SpellList = new Spellbook();
         }
 
         public Enemy(ActionScreen parent)
         {
-            Health = MaxHealth = 200;
+            Health = MaxHealth = 50;
             Mana = MaxMana = 3;
             TextureName = "skelly";
             SpellList = new Spellbook();

@@ -8,15 +8,7 @@ namespace Spring.core
 
         private int _spellCount;
 
-        private static Spell[] _spells;
-
-        public Spell[] GetSpells
-        {
-            get
-            {
-                return _spells;
-            }
-        }
+        private Spell[] _spells;
 
         public Spellbook()
         {
@@ -33,15 +25,19 @@ namespace Spring.core
 
         }
 
-        private void UpdateUI()
+        public Spell GetSpell(int index)
         {
-
-            if (Game1.GameState != Game1.State.Playing)
+            if(index >= 0 && index <= 3)
             {
-                return;
+                return _spells[index];
             }
 
-            CombatInterface.UpdateSpell(_spells);
+            return null;
+        }
+
+        public Spell[] GetSpells()
+        {
+            return _spells;
         }
 
         public void AddSpell(Spell spell)
@@ -54,7 +50,6 @@ namespace Spring.core
                     {
                         _spells[i] = spell;
                         _spellCount++;
-                        UpdateUI();
                         return;
                     }
                 }
@@ -68,14 +63,13 @@ namespace Spring.core
         public void ReplaceSpell(Spell spell, int index)
         {
             _spells[index] = spell;
-            UpdateUI();
         }
 
         public void RemoveSpell(int index)
         {
             _spells[index] = null;
             _spellCount--;
-            UpdateUI();
+
         }
 
     }

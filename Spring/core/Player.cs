@@ -24,12 +24,18 @@ namespace Spring.core
             Health = MaxHealth = 25;
             Mana = MaxMana = 3;
             SpellList = new Spellbook();
+
+            SpellList.AddSpell(new Spell());
+            SpellList.AddSpell(new Spell(15, 2, "The pizza margerita of spells", "Fireball", "fireball_icon", Spell.Effect.Damage));
+            SpellList.AddSpell(new Spell(10, 1, "Restore your health", "Liferose", "liferose_icon", Spell.Effect.Heal));
+            SpellList.AddSpell(new Spell(20, 2, "Protect yourself", "Shield", "shield_icon", Spell.Effect.Shield));
+
         }
 
         public void LoadContent()
         {
-            //_sprite = Game1.GameContent.Load<Texture2D>("interface/whiteSquare");
             _sprite = Game1.GameContent.Load<Texture2D>("entity/player");
+
         }
 
         public void Draw(GameTime gameTime)

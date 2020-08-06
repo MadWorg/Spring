@@ -1,4 +1,1 @@
-﻿Turn-based partially implemented, add player and enemy mana resetting after swapping turns
-Fix player spells not loading when re-entering ActionScreen
-Fix pass button not working after dying and restarting game. Button most likely doesnt have reference to ActionScreen to change
-PlayerTurn to false.
+﻿Fix player spells not being sent to spell buttons.

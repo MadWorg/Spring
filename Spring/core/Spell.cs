@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,10 @@ namespace Spring.core
             EffectType = effect;
         }
 
+        public void Draw(GameTime gameTime, Rectangle source, Color tint)
+        {
+            Game1.SpriteBatch.Draw(Icon, source, tint);
+        }
 
         public Spell(string spell_icon)
         {

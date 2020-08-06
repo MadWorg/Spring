@@ -60,10 +60,12 @@ namespace Spring.screens
             
             Game1.Player.LoadContent();
 
+            /*
             Game1.Player.SpellList.AddSpell(new Spell());
             Game1.Player.SpellList.AddSpell(new Spell(15, 2, "The pizza margerita of spells", "Fireball", "fireball_icon", Spell.Effect.Damage));
             Game1.Player.SpellList.AddSpell(new Spell(10, 1, "Restore your health", "Liferose", "liferose_icon", Spell.Effect.Heal));
             Game1.Player.SpellList.AddSpell(new Spell(20, 2, "Protect yourself", "Shield", "shield_icon", Spell.Effect.Shield));
+            */
 
             _floor[roomIndex].LoadContent();
 
@@ -90,6 +92,13 @@ namespace Spring.screens
                 ScreenManager.Instance.SwitchScreen("GameOverScreen");
                 Game1.Player = new Player(); // resets player to default test value, replace later
             }
+
+            if(Enemy.Health <= 0)
+            {
+                Console.WriteLine("Give loot and switch to new screen");
+                Console.WriteLine("Currently just resets it to full hp");
+                Enemy.Health = Enemy.MaxHealth;
+            } 
 
             Game1.Player.Update(gameTime);
 

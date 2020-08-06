@@ -99,7 +99,7 @@ namespace Spring.screens
 
             // TODO add transition effect ( fade to black )
             Console.WriteLine("Loading new screen...");
-            _currentScreen.Unload();
+            //_currentScreen.Unload(); Just dont do it, causes way too many issues
             _currentScreen = _newScreen;
             _newScreen.LoadContent();
             _inTransition = false;

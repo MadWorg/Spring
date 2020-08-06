@@ -38,11 +38,7 @@ namespace Spring.ui
 
         public int SpellIndex { get; set; }
 
-        public Spell Spell { get; set; } // edit this to load spell icon
-
         public ActionScreen Parent { get; set; }
-
-        //public Spell Spell { get; set; }    // uncomment when spells are done
 
         public Rectangle Rectangle
         {
@@ -76,17 +72,16 @@ namespace Spring.ui
         public override void Draw(GameTime gameTime)
         {
 
-            Tint = Color.White;
+            var spell = Game1.Player.SpellList.GetSpell(Index);
 
-            // add spell availability logic -> color red if you cant cast it etc
-            // add icon replacing
+            Tint = Color.White;
 
             if(_hovering)
             {
                 Tint = Color.LightSkyBlue;
             }
 
-            if(Spell == null)
+            if(spell == null)
             {
                 Game1.SpriteBatch.Draw(_icon, Rectangle, Tint);
                 Game1.SpriteBatch.Draw(_border, Rectangle, Color.White);
@@ -94,12 +89,12 @@ namespace Spring.ui
             else
             {
 
-                if(Spell.Cost > Game1.Player.Mana)
+                if(spell.Cost > Game1.Player.Mana)
                 {
                     Tint = Color.Red;
                 }
 
-                Game1.SpriteBatch.Draw(Spell.Icon, Rectangle, Tint);
+                Game1.SpriteBatch.Draw(Game1.Player.SpellList.GetSpell(Index).Icon, Rectangle, Tint);
                 Game1.SpriteBatch.Draw(_border, Rectangle, Color.White);
             }
 
@@ -123,7 +118,13 @@ namespace Spring.ui
 
                 if(_currentState.LeftButton == ButtonState.Released && _previousState.LeftButton == ButtonState.Pressed)
                 {
-                    Parent.SpellHandler.CastSpell(Spell, Game1.Player);
+
+                    var spell = Game1.Player.SpellList.GetSpell(Index);
+
+                    if (spell != null)
+                    {
+                        Parent.SpellHandler.CastSpell(spell, Game1.Player);
+                    }
                 }
 
             }
