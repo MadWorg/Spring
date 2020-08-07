@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Spring.core;
 using Spring.gameLogic;
@@ -18,6 +19,8 @@ namespace Spring.screens
         private int roomIndex = 0;
 
         private static bool _playerTurn = true;
+
+        private static bool _newGame = true;
 
         public static bool PlayerTurn
         {
@@ -44,12 +47,12 @@ namespace Spring.screens
 
         public CombatInterface ActionInterface;
 
-        public SpellHandler SpellHandler;
+        public static SpellHandler SpellHandler;
 
         public ActionScreen()
         {
             SpellHandler = new SpellHandler(this);
-            _floor = GenerateFloor(3);
+            GenerateFloor(1);
         }
 
         public override void LoadContent()
@@ -57,8 +60,22 @@ namespace Spring.screens
 
             // make rooms separately, add Floor class to hold rooms
 
-            
             Game1.Player.LoadContent();
+
+            if (_newGame)
+            {               
+
+                GenerateFloor(1);
+
+                foreach (Room room in _floor)
+                {
+                    room.LoadContent();
+                }
+
+                _newGame = false;
+            }
+            
+            
 
             /*
             Game1.Player.SpellList.AddSpell(new Spell());
@@ -67,7 +84,7 @@ namespace Spring.screens
             Game1.Player.SpellList.AddSpell(new Spell(20, 2, "Protect yourself", "Shield", "shield_icon", Spell.Effect.Shield));
             */
 
-            _floor[roomIndex].LoadContent();
+            
 
             ActionInterface = new CombatInterface(Enemy, this);
             ActionInterface.LoadContent();
@@ -91,6 +108,7 @@ namespace Spring.screens
             {
                 ScreenManager.Instance.SwitchScreen("GameOverScreen");
                 Game1.Player = new Player(); // resets player to default test value, replace later
+                _newGame = true;
             }
 
             if(Enemy.Health <= 0)
@@ -98,6 +116,20 @@ namespace Spring.screens
                 Console.WriteLine("Give loot and switch to new screen");
                 Console.WriteLine("Currently just resets it to full hp");
                 Enemy.Health = Enemy.MaxHealth;
+
+                if(roomIndex < _floor.Length-1)
+                {
+                    roomIndex++;
+                }
+                else
+                {
+                    ScreenManager.Instance.SwitchScreen("GameWinScreen");
+                    _newGame = true;
+                    Game1.Player = new Player();
+                }
+
+                
+
             } 
 
             Game1.Player.Update(gameTime);
@@ -116,9 +148,10 @@ namespace Spring.screens
             Game1.Player.Draw(gameTime);
 
             ActionInterface.Draw(gameTime);
+
         }
 
-        private Room[] GenerateFloor(int roomCount)
+        private void GenerateFloor(int roomCount)
         {
             var floor = new Room[roomCount];
 
@@ -128,7 +161,7 @@ namespace Spring.screens
                 floor[i] = new Room(this);
             }
 
-            return floor;
+            _floor = floor;
         }
     }
 }

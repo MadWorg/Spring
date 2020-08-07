@@ -2,11 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Spring.screens;
 using Spring.ui;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Spring.core
 {
@@ -33,7 +28,6 @@ namespace Spring.core
             Mana = MaxMana = 3;
             TextureName = "skelly";
             SpellList = new Spellbook();
-            Parent = parent;
         }
 
         public void LoadContent()
@@ -71,7 +65,7 @@ namespace Spring.core
         {
             Mana = MaxMana; // resets properly, too fast to notice by eye
 
-            Parent.SpellHandler.CastSpell(new Spell(), this);
+            ActionScreen.SpellHandler.CastSpell(new Spell(), this);
 
             ActionScreen.PlayerTurn = true;
 

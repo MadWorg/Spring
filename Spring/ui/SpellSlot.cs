@@ -123,7 +123,7 @@ namespace Spring.ui
 
                     if (spell != null)
                     {
-                        Parent.SpellHandler.CastSpell(spell, Game1.Player);
+                        ActionScreen.SpellHandler.CastSpell(spell, Game1.Player);
                     }
                 }
 

@@ -1,1 +1,2 @@
-﻿Fix player spells not being sent to spell buttons.
+﻿Add particle system and spell drawing system.
+Particles should maybe be 32x32 upped from 16x16

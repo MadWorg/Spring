@@ -43,6 +43,7 @@ namespace Spring.screens
             _currentScreen = new TitleScreen();
             _screens.Add("TitleScreen", _currentScreen);
             _screens.Add("GameOverScreen", new TitleScreen("gameOver"));
+            _screens.Add("GameWinScreen", new TitleScreen("gameWin"));
         }
 
         public void LoadContent()
