@@ -44,10 +44,13 @@
     <Compile Include="Component.cs" />
     <Compile Include="core\Enemy.cs" />
     <Compile Include="core\Entity.cs" />
+    <Compile Include="core\Particle.cs" />
+    <Compile Include="core\ParticleEngine.cs" />
     <Compile Include="core\Player.cs" />
     <Compile Include="core\Room.cs" />
     <Compile Include="core\Spell.cs" />
     <Compile Include="core\Spellbook.cs" />
+    <Compile Include="core\SpellDrawer.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="gameLogic\SpellHandler.cs" />
     <Compile Include="Program.cs" />

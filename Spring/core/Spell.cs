@@ -23,6 +23,8 @@ namespace Spring.core
 
         public int Index { get; set; }
 
+        public int ParticleType { get; set; }
+
         public Effect EffectType { get; internal set; }
 
         public enum Effect

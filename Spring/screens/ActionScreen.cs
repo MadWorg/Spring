@@ -73,21 +73,12 @@ namespace Spring.screens
                 }
 
                 _newGame = false;
-            }
-            
-            
-
-            /*
-            Game1.Player.SpellList.AddSpell(new Spell());
-            Game1.Player.SpellList.AddSpell(new Spell(15, 2, "The pizza margerita of spells", "Fireball", "fireball_icon", Spell.Effect.Damage));
-            Game1.Player.SpellList.AddSpell(new Spell(10, 1, "Restore your health", "Liferose", "liferose_icon", Spell.Effect.Heal));
-            Game1.Player.SpellList.AddSpell(new Spell(20, 2, "Protect yourself", "Shield", "shield_icon", Spell.Effect.Shield));
-            */
-
-            
+            }           
 
             ActionInterface = new CombatInterface(Enemy, this);
             ActionInterface.LoadContent();
+
+            //SpellHandler.LoadContent();
 
             // switch game state
             Game1.GameState = Game1.State.Playing;
@@ -136,6 +127,9 @@ namespace Spring.screens
 
             Enemy.Update(gameTime);
 
+            //remove this after testing
+            //SpellHandler.Update(gameTime);
+
             ActionInterface.Update(gameTime);
 
 
@@ -147,7 +141,12 @@ namespace Spring.screens
 
             Game1.Player.Draw(gameTime);
 
+            // remove this after testing
+            //SpellHandler.Draw(gameTime);
+
             ActionInterface.Draw(gameTime);
+
+
 
         }
 

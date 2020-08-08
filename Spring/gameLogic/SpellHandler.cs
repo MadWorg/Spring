@@ -16,9 +16,27 @@ namespace Spring.gameLogic
 
         private ActionScreen _parent;
 
+        private SpellDrawer _spellDrawer;
+
         public SpellHandler(ActionScreen parent)
         {
             _parent = parent;
+            //_spellDrawer = new SpellDrawer();
+        }
+
+        public void LoadContent()
+        {
+            _spellDrawer.LoadContent();
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            _spellDrawer.Update(gameTime);
+        }
+
+        public void Draw(GameTime gameTime)
+        {
+            _spellDrawer.Draw(gameTime);
         }
 
         public void CastSpell(Spell spell, Entity caster)

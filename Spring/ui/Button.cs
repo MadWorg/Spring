@@ -34,6 +34,8 @@ namespace Spring.ui
 
         public Vector2 Position { get; set; }
 
+        public Color Color { get; set; }
+
         public Rectangle Rectangle
         {
             get

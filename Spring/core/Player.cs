@@ -11,9 +11,18 @@ namespace Spring.core
 {
     public class Player : Entity
     {
-        private Texture2D _sprite;
+
+        #region Fields
+
+        private Texture2D _headSprite;
+        private Texture2D _bodySprite;
+        private Texture2D _handSprite;
+
+        #endregion
 
         #region Properties
+
+        public Color Color { get; set; }
 
         #endregion
 
@@ -24,6 +33,7 @@ namespace Spring.core
             Health = MaxHealth = 25;
             Mana = MaxMana = 3;
             SpellList = new Spellbook();
+            Color = Color.White;
 
             SpellList.AddSpell(new Spell());
             SpellList.AddSpell(new Spell(15, 2, "The pizza margerita of spells", "Fireball", "fireball_icon", Spell.Effect.Damage));
@@ -34,13 +44,16 @@ namespace Spring.core
 
         public void LoadContent()
         {
-            _sprite = Game1.GameContent.Load<Texture2D>("entity/player");
-
+            _headSprite = Game1.GameContent.Load<Texture2D>("entity/player1");
+            _bodySprite = Game1.GameContent.Load<Texture2D>("entity/player2");
+            _handSprite = Game1.GameContent.Load<Texture2D>("entity/player3");
         }
 
         public void Draw(GameTime gameTime)
         {
-            Game1.SpriteBatch.Draw(_sprite, new Rectangle(230, 120, 350, 630), Color.White);
+            Game1.SpriteBatch.Draw(_headSprite, new Rectangle(230, 120, 350, 630), Color.White);
+            Game1.SpriteBatch.Draw(_bodySprite, new Rectangle(230, 120, 350, 630), Color);
+            Game1.SpriteBatch.Draw(_handSprite, new Rectangle(230, 120, 350, 630), Color.White);
         }
 
         public void Update(GameTime gameTime)

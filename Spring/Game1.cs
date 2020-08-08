@@ -77,6 +77,7 @@ namespace Spring
             }
 
             Player = new Player();
+            Player.Color = Color.Purple;
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             ScreenManager.Instance.LoadContent();
 
