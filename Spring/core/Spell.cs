@@ -44,6 +44,14 @@ namespace Spring.core
             EffectType = Effect.Damage;
         }
 
+        public Spell(int value, int cost, string name, Effect effect)
+        {
+            Value = value;
+            Cost = cost;
+            Name = name;
+            EffectType = effect;
+        }
+
         public Spell(int value, int cost, string desc, string name, string texture, Effect effect)
         {
             Value = value;

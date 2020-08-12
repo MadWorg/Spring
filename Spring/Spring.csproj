@@ -42,6 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Component.cs" />
+    <Compile Include="core\AnimatedSprite.cs" />
+    <Compile Include="core\AudioPlayer.cs" />
     <Compile Include="core\Enemy.cs" />
     <Compile Include="core\Entity.cs" />
     <Compile Include="core\Particle.cs" />
@@ -51,6 +53,9 @@
     <Compile Include="core\Spell.cs" />
     <Compile Include="core\Spellbook.cs" />
     <Compile Include="core\SpellDrawer.cs" />
+    <Compile Include="enemies\Demon.cs" />
+    <Compile Include="enemies\Ghost.cs" />
+    <Compile Include="enemies\Skull.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="gameLogic\SpellHandler.cs" />
     <Compile Include="Program.cs" />
@@ -58,6 +63,7 @@
     <Compile Include="screens\ActionScreen.cs" />
     <Compile Include="screens\MainMenu.cs" />
     <Compile Include="screens\GameScreen.cs" />
+    <Compile Include="screens\RobeScreen.cs" />
     <Compile Include="screens\ScreenManager.cs" />
     <Compile Include="screens\TitleScreen.cs" />
     <Compile Include="ui\Button.cs" />

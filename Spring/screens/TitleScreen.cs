@@ -1,12 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Media;
 
 namespace Spring.screens
 {
@@ -17,7 +12,11 @@ namespace Spring.screens
 
         private Texture2D _texture;
 
-        private string _textureName = "titleScreen";
+        private string _textureName;
+
+        private string _songName;
+
+        private Song _song;
 
         private MouseState _previousState, _currentState;
 
@@ -32,9 +31,21 @@ namespace Spring.screens
             _textureName = background;
         }
 
+        public TitleScreen(string background, string song)
+        {
+            _textureName = background;
+            _songName = song;
+        }
+
         public override void LoadContent()
         {
             _texture = Game1.GameContent.Load<Texture2D>("background/" + _textureName);
+
+            if(_songName != null)
+            {
+                _song = (Song)Game1.GameContent.Load<Song>("music/" + _songName);
+                Game1.AudioPlayer.PlaySong(_song);
+            }
 
             Game1.GameState = Game1.State.Menu;
         }
@@ -51,7 +62,6 @@ namespace Spring.screens
 
             if (_currentState.LeftButton == ButtonState.Released && _previousState.LeftButton == ButtonState.Pressed)
             {
-                Console.WriteLine("Swapping");
                 ScreenManager.Instance.SwitchScreen("MainMenu");
             }
 

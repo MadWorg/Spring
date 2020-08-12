@@ -13,6 +13,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin background/colorPick.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/colorPick.png
+
 #begin background/gameOver.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -49,7 +61,7 @@
 /processorParam:TextureFormat=Color
 /build:background/mainMenu.png
 
-#begin background/testRoom.png
+#begin background/room1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,7 +71,55 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:background/testRoom.png
+/build:background/room1.png
+
+#begin background/room2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/room2.png
+
+#begin background/room3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/room3.png
+
+#begin background/room4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/room4.png
+
+#begin background/room5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/room5.png
 
 #begin background/titleScreen.png
 /importer:TextureImporter
@@ -85,7 +145,7 @@
 /processorParam:TextureFormat=Color
 /build:entity/darkOrc.png
 
-#begin entity/darkOrc.png
+#begin entity/demon.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -95,9 +155,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:entity/darkOrc.png
+/build:entity/demon.png
 
-#begin entity/player.png
+#begin entity/ghost.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -107,7 +167,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:entity/player.png
+/build:entity/ghost.png
 
 #begin entity/player.png
 /importer:TextureImporter
@@ -157,7 +217,7 @@
 /processorParam:TextureFormat=Color
 /build:entity/player3.png
 
-#begin entity/skelly.png
+#begin entity/skeleton.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -167,7 +227,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:entity/skelly.png
+/build:entity/skeleton.png
 
 #begin entity/skelly.png
 /importer:TextureImporter
@@ -181,7 +241,7 @@
 /processorParam:TextureFormat=Color
 /build:entity/skelly.png
 
-#begin entity/testEnemy.png
+#begin entity/skull.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -191,7 +251,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:entity/testEnemy.png
+/build:entity/skull.png
 
 #begin entity/testEnemy.png
 /importer:TextureImporter
@@ -212,6 +272,18 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/baseFont.spritefont
 
+#begin interface/blank_circle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:interface/blank_circle.png
+
 #begin interface/button.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -224,6 +296,18 @@
 /processorParam:TextureFormat=Color
 /build:interface/button.png
 
+#begin interface/exit.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:interface/exit.png
+
 #begin interface/exit2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -235,6 +319,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:interface/exit2.png
+
+#begin interface/pass.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:interface/pass.png
 
 #begin interface/spellBar.png
 /importer:TextureImporter
@@ -283,6 +379,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:interface/whiteSquare.png
+
+#begin music/gameOver.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:music/gameOver.wav
+
+#begin music/title.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:music/title.wav
 
 #begin particles/particle_cross1.png
 /importer:TextureImporter
@@ -355,6 +463,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:particles/particle_fire3.png
+
+#begin soundfx/Button_5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:soundfx/Button_5.wav
+
+#begin soundfx/Button_6.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:soundfx/Button_6.wav
 
 #begin spells/fireball_icon.png
 /importer:TextureImporter

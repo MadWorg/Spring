@@ -1,11 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Spring.enemies;
 using Spring.screens;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Spring.core
 {
@@ -16,20 +13,20 @@ namespace Spring.core
 
         public string TextureName { get; set; }
 
-        public Enemy Enemy { get; set; }
+        public Entity Enemy { get; set; }
 
         private ActionScreen Parent { get; set; }
 
-        public Room(string texture, Enemy enemy, ActionScreen parent)
-        {
-            TextureName = texture;
-            Enemy = enemy;
-        }
-
         public Room(ActionScreen parent)
         {
-            TextureName = "testRoom";
-            Enemy = new Enemy(parent);
+
+            int room = Game1.Random.Next(1,6);
+
+            TextureName = "room" + room;
+
+            string[] monsters = {"Demon", "Ghost", "Skull" };
+            Enemy = (Entity)Activator.CreateInstance(Type.GetType("Spring.enemies." + monsters[Game1.Random.Next(0, monsters.Length)]));
+
         }
 
         public void LoadContent()

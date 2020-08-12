@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,10 @@ namespace Spring.core
         protected int _mana;
 
         protected int _maxMana;
+
+        protected AnimatedSprite _sprite;
+
+        protected Texture2D _staticSprite;
 
         public Spellbook SpellList;
 
@@ -75,6 +81,15 @@ namespace Spring.core
                 _maxMana = value;
             }
         }
+
+        // Methods
+
+        public abstract void LoadContent();
+
+        public abstract void Update(GameTime gameTime);
+
+        public abstract void Draw(GameTime gameTime);
+
 
     }
 }

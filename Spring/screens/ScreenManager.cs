@@ -40,9 +40,9 @@ namespace Spring.screens
         public ScreenManager()
         {
             //SwitchScreen("TitleScreen");
-            _currentScreen = new TitleScreen();
+            _currentScreen = new TitleScreen("titleScreen", "title");
             _screens.Add("TitleScreen", _currentScreen);
-            _screens.Add("GameOverScreen", new TitleScreen("gameOver"));
+            _screens.Add("GameOverScreen", new TitleScreen("gameOver", "gameOver"));
             _screens.Add("GameWinScreen", new TitleScreen("gameWin"));
         }
 
@@ -101,6 +101,7 @@ namespace Spring.screens
             // TODO add transition effect ( fade to black )
             Console.WriteLine("Loading new screen...");
             //_currentScreen.Unload(); Just dont do it, causes way too many issues
+            Game1.AudioPlayer.StopSong();
             _currentScreen = _newScreen;
             _newScreen.LoadContent();
             _inTransition = false;

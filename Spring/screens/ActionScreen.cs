@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Spring.core;
+using Spring.enemies;
 using Spring.gameLogic;
 using Spring.ui;
 
@@ -36,7 +37,7 @@ namespace Spring.screens
 
         }
 
-        public Enemy Enemy
+        public Entity Enemy
         {
             get
             {
@@ -52,7 +53,7 @@ namespace Spring.screens
         public ActionScreen()
         {
             SpellHandler = new SpellHandler(this);
-            GenerateFloor(1);
+            GenerateFloor(3);
         }
 
         public override void LoadContent()
@@ -65,7 +66,7 @@ namespace Spring.screens
             if (_newGame)
             {               
 
-                GenerateFloor(1);
+                GenerateFloor(3);
 
                 foreach (Room room in _floor)
                 {
@@ -99,13 +100,12 @@ namespace Spring.screens
             {
                 ScreenManager.Instance.SwitchScreen("GameOverScreen");
                 Game1.Player = new Player(); // resets player to default test value, replace later
+                Game1.Player.LoadContent();
                 _newGame = true;
             }
 
             if(Enemy.Health <= 0)
             {
-                Console.WriteLine("Give loot and switch to new screen");
-                Console.WriteLine("Currently just resets it to full hp");
                 Enemy.Health = Enemy.MaxHealth;
 
                 if(roomIndex < _floor.Length-1)
@@ -116,6 +116,7 @@ namespace Spring.screens
                 {
                     ScreenManager.Instance.SwitchScreen("GameWinScreen");
                     _newGame = true;
+                    roomIndex = 0;
                     Game1.Player = new Player();
                 }
 
@@ -137,6 +138,9 @@ namespace Spring.screens
 
         public override void Draw(GameTime gameTime)
         {
+
+            
+
             _floor[roomIndex].Draw(gameTime);
 
             Game1.Player.Draw(gameTime);
@@ -145,8 +149,6 @@ namespace Spring.screens
             //SpellHandler.Draw(gameTime);
 
             ActionInterface.Draw(gameTime);
-
-
 
         }
 

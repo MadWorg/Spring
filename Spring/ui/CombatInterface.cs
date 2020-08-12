@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Spring.core;
 using Spring.screens;
@@ -19,7 +20,7 @@ namespace Spring.ui
 
         private SpriteFont _font;
 
-        private Enemy _enemy;
+        private Entity _enemy;
 
         private ActionScreen _parent;
 
@@ -49,7 +50,7 @@ namespace Spring.ui
 
         #region Methods
 
-        public CombatInterface(Enemy enemy, ActionScreen parent)
+        public CombatInterface(Entity enemy, ActionScreen parent)
         {
 
             // get rid of this code ?
@@ -158,12 +159,17 @@ namespace Spring.ui
 
             // regular buttons
 
-            var ExitButton = new Button("Exit", Game1.GameContent.Load<Texture2D>("interface/exit2"), _font)
+            var ExitButton = new Button("Exit", Game1.GameContent.Load<Texture2D>("interface/exit2"),
+                                                Game1.GameContent.Load<Texture2D>("spells/spell_border"),
+                                                _font)
             {
-                Position = new Vector2(1380, 810)
+                Position = new Vector2(1380, 810),
+                SoundEffect = Game1.GameContent.Load<SoundEffect>("soundfx/Button_5")
             };
 
-            var PassButton = new Button("Pass", Game1.GameContent.Load<Texture2D>("interface/exit2"), _font)
+            var PassButton = new Button("Pass", Game1.GameContent.Load<Texture2D>("interface/pass"),
+                                                Game1.GameContent.Load<Texture2D>("spells/spell_border"),
+                                                _font)
             {
                 Position = new Vector2(1280, 810)
             };

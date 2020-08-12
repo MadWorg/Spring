@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Spring.core;
 using Spring.screens;
+using System;
 
 namespace Spring
 {
@@ -18,11 +19,15 @@ namespace Spring
 
         public static ContentManager GameContent;
 
+        public static AudioPlayer AudioPlayer;
+
         public static bool ExitGame;
 
         public static Player Player;
 
         public static bool DebugMode;
+
+        public static Random Random;
 
         public static State GameState;
 
@@ -58,6 +63,8 @@ namespace Spring
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            Random = new Random();
+            AudioPlayer = new AudioPlayer();
             GameState = State.Menu;
             base.Initialize();
         }
@@ -76,9 +83,13 @@ namespace Spring
                 // make player from savefile
             }
 
+
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
+
             Player = new Player();
             Player.Color = Color.Purple;
-            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            Player.LoadContent();
+
             ScreenManager.Instance.LoadContent();
 
             // TODO: use this.Content to load your game content here

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -20,6 +21,8 @@ namespace Spring.ui
 
         private Texture2D _texture;
 
+        private Texture2D _border;
+
         private bool _hovering;
 
         private MouseState _previousState, _currentState;
@@ -27,6 +30,8 @@ namespace Spring.ui
         #endregion
 
         #region Properties
+
+        public SoundEffect SoundEffect { get; set; }
 
         public event EventHandler Click;
 
@@ -58,17 +63,36 @@ namespace Spring.ui
             _font = font;
         }
 
+        public Button(string label, Texture2D texture, Texture2D border, SpriteFont font)
+        {
+            Label = label;
+            _texture = texture;
+            _font = font;
+            _border = border;
+        }
+
         // add another constructor that can resize the button
 
         public override void Draw(GameTime gameTime)
         {
             var color = Color.White;
+            var borderColor = Color.White;
 
-            Game1.SpriteBatch.Draw(_texture, Rectangle, Color.White);
+            if(Color == new Color(0, 0, 0, 0))
+            {
+                Game1.SpriteBatch.Draw(_texture, Rectangle, Color.White);
+            }
+            else
+            {
+                Game1.SpriteBatch.Draw(_texture, Rectangle, Color);
+            }
+
+            
 
             if (_hovering)
             {
                 color = Color.Gold;
+                borderColor = Color.Red;
             }
 
             
@@ -78,6 +102,11 @@ namespace Spring.ui
                 var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
 
                 Game1.SpriteBatch.DrawString(_font, Text, new Vector2(x, y), color);
+            }
+
+            if(_border != null)
+            {
+                Game1.SpriteBatch.Draw(_border, Rectangle, borderColor);
             }
             
 
@@ -99,6 +128,10 @@ namespace Spring.ui
                 if(_currentState.LeftButton == ButtonState.Released && _previousState.LeftButton == ButtonState.Pressed)
                 {
                     Click?.Invoke(this, new EventArgs());
+                    if(SoundEffect != null)
+                    {
+                        Game1.AudioPlayer.PlaySound(SoundEffect);
+                    }                 
                 }
 
             }
